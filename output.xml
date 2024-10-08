@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1 (Python 3.12.5 on win32)" generated="2024-09-23T11:23:26.645569" rpa="false" schemaversion="5">
+<suite id="s1" name="Assignment4" source="d:\Hamk\Software_Testing\Unit_Testing\Assignment-4\Assignment4.robot">
+<test id="s1-t1" name="Get ip address and ping time" line="8">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-09-23T11:23:26.713623" level="INFO">${path} = D:/Hamk/Software_Testing/Unit_Testing/Assignment-4/</msg>
+<var>${path}</var>
+<arg>D:/Hamk/Software_Testing/Unit_Testing/Assignment-4/</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.713623" elapsed="0.004050"/>
+</kw>
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2024-09-23T11:23:26.718688" level="INFO" html="true">Getting file '&lt;a href="file://D:\Hamk\Software_Testing\Unit_Testing\Assignment-4\webpages.txt"&gt;D:\Hamk\Software_Testing\Unit_Testing\Assignment-4\webpages.txt&lt;/a&gt;'.</msg>
+<msg time="2024-09-23T11:23:26.729687" level="INFO">${websites} = www.whitehouse.gov
+www.iltalehti.fi
+best.aliexpress.com</msg>
+<var>${websites}</var>
+<arg>${path}webpages.txt</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.717673" elapsed="0.012014"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-09-23T11:23:26.731685" level="INFO">${websites} = ['www.whitehouse.gov', 'www.iltalehti.fi', 'best.aliexpress.com']</msg>
+<var>${websites}</var>
+<arg>${websites}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.730688" elapsed="0.000997"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-23T11:23:26.732688" level="INFO">['www.whitehouse.gov', 'www.iltalehti.fi', 'best.aliexpress.com']</msg>
+<arg>${websites}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.731685" elapsed="0.001003"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2024-09-23T11:23:26.733686" level="INFO">Length is 3.</msg>
+<msg time="2024-09-23T11:23:26.733686" level="INFO">${length} = 3</msg>
+<var>${length}</var>
+<arg>${websites}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.733686" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-23T11:23:26.734686" level="INFO">3</msg>
+<arg>${length}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.734686" elapsed="0.000000"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2024-09-23T11:23:26.756333" level="INFO" html="true">Created file '&lt;a href="file://D:\Hamk\Software_Testing\Unit_Testing\Assignment-4\info.txt"&gt;D:\Hamk\Software_Testing\Unit_Testing\Assignment-4\info.txt&lt;/a&gt;'.</msg>
+<arg>${path}info.txt</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.735686" elapsed="0.021648"/>
+</kw>
+<for flavor="IN RANGE">
+<iter>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-09-23T11:23:26.773479" level="INFO">${webAddress} = www.whitehouse.gov</msg>
+<var>${webAddress}</var>
+<arg>${websites}[${index}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.773479" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-23T11:23:26.774987" level="INFO">www.whitehouse.gov</msg>
+<arg>${webAddress}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.773479" elapsed="0.001508"/>
+</kw>
+<kw name="Run And Return Rc And Output" owner="OperatingSystem">
+<msg time="2024-09-23T11:23:26.792014" level="INFO">Running command 'ping www.whitehouse.gov 2&gt;&amp;1'.</msg>
+<msg time="2024-09-23T11:23:45.789121" level="INFO">${ipString} = (1, '\nPinging wh46.go-vip.net [192.0.66.168] with 32 bytes of data:\nRequest timed out.\nRequest timed out.\nRequest timed out.\nRequest timed out.\n\nPing statistics for 192.0.66.168:\n    Packets: ...</msg>
+<var>${ipString}</var>
+<arg>ping ${webAddress}</arg>
+<doc>Runs the given command in the system and returns the RC and output.</doc>
+<status status="PASS" start="2024-09-23T11:23:26.774987" elapsed="19.014134"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-23T11:23:45.789121" level="INFO">(1, '\nPinging wh46.go-vip.net [192.0.66.168] with 32 bytes of data:\nRequest timed out.\nRequest timed out.\nRequest timed out.\nRequest timed out.\n\nPing statistics for 192.0.66.168:\n    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),')</msg>
+<arg>${ipString}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-09-23T11:23:45.789121" level="INFO">${ipString} = ['Pinging', 'wh46.go-vip.net', '[192.0.66.168]', 'with', '32', 'bytes', 'of', 'data:', 'Request', 'timed', 'out.', 'Request', 'timed', 'out.', 'Request', 'timed', 'out.', 'Request', 'timed', 'out.', '...</msg>
+<var>${ipString}</var>
+<arg>${ipString}[1]</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Get Index From List" owner="Collections">
+<msg time="2024-09-23T11:23:45.789121" level="INFO">${index} = -1</msg>
+<var>${index}</var>
+<arg>${ipString}</arg>
+<arg>from</arg>
+<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-23T11:23:45.789121" level="INFO">-1</msg>
+<arg>${index}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-09-23T11:23:45.789121" level="INFO">${index} = 0</msg>
+<var>${index}</var>
+<arg>${index}+1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-09-23T11:23:45.789121" level="INFO">${ipAddress} = Pinging</msg>
+<var>${ipAddress}</var>
+<arg>${ipString}[${index}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-09-23T11:23:45.789121" level="INFO">${ipAddress} = Pinging</msg>
+<var>${ipAddress}</var>
+<arg>${ipAddress}</arg>
+<arg>:</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-23T11:23:45.789121" level="INFO">Pinging</msg>
+<arg>${ipAddress}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Append To File" owner="OperatingSystem">
+<msg time="2024-09-23T11:23:45.789121" level="INFO" html="true">Appended to file '&lt;a href="file://D:\Hamk\Software_Testing\Unit_Testing\Assignment-4\info.txt"&gt;D:\Hamk\Software_Testing\Unit_Testing\Assignment-4\info.txt&lt;/a&gt;'.</msg>
+<arg>${path}info.txt</arg>
+<arg>${webAddress}: ${ipAddress}\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Get Index From List" owner="Collections">
+<msg time="2024-09-23T11:23:45.789121" level="INFO">${index} = -1</msg>
+<var>${index}</var>
+<arg>${ipString}</arg>
+<arg>from</arg>
+<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.789121" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-09-23T11:23:45.804749" level="INFO">${index} = 2</msg>
+<var>${index}</var>
+<arg>${index}+3</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.804749" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-09-23T11:23:45.804749" level="INFO">${ping-time1} = [192.0.66.168]</msg>
+<var>${ping-time1}</var>
+<arg>${ipString}[${index}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.804749" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2024-09-23T11:23:45.804749" level="INFO">${ping-time1} = [192.0.66.168]</msg>
+<var>${ping-time1}</var>
+<arg>${ping-time1}</arg>
+<arg>time=</arg>
+<arg>ms</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.804749" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-09-23T11:23:45.804749" level="INFO">[192.0.66.168]</msg>
+<arg>${ping-time1}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.804749" elapsed="0.000000"/>
+</kw>
+<kw name="Append To File" owner="OperatingSystem">
+<msg time="2024-09-23T11:23:45.804749" level="INFO" html="true">Appended to file '&lt;a href="file://D:\Hamk\Software_Testing\Unit_Testing\Assignment-4\info.txt"&gt;D:\Hamk\Software_Testing\Unit_Testing\Assignment-4\info.txt&lt;/a&gt;'.</msg>
+<arg>${path}info.txt</arg>
+<arg>ping-time: ${ping-time1}\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<status status="PASS" start="2024-09-23T11:23:45.804749" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<msg time="2024-09-23T11:23:45.818175" level="FAIL">Evaluating expression '[192.0.66.168]&lt;50' failed: SyntaxError: invalid syntax. Perhaps you forgot a comma? (&lt;string&gt;, line 1)</msg>
+<arg>${ping-time1}&lt;50</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="FAIL" start="2024-09-23T11:23:45.804749" elapsed="0.013426">Evaluating expression '[192.0.66.168]&lt;50' failed: SyntaxError: invalid syntax. Perhaps you forgot a comma? (&lt;string&gt;, line 1)</status>
+</kw>
+<kw name="Get Index From List" owner="Collections">
+<var>${index}</var>
+<arg>${ipString}</arg>
+<arg>from</arg>
+<arg>${index}</arg>
+<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.818175" elapsed="0.003870"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${index}</var>
+<arg>${index}+3</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.822045" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${ping-time2}</var>
+<arg>${ipString}[${index}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.822045" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<var>${ping-time2}</var>
+<arg>${ping-time2}</arg>
+<arg>time=</arg>
+<arg>ms</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.822045" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${ping-time2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.823464" elapsed="0.000000"/>
+</kw>
+<kw name="Append To File" owner="OperatingSystem">
+<arg>${path}info.txt</arg>
+<arg>ping-time: ${ping-time2}\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.823464" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${ping-time2}&lt;50</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.823464" elapsed="0.000000"/>
+</kw>
+<kw name="Get Index From List" owner="Collections">
+<var>${index}</var>
+<arg>${ipString}</arg>
+<arg>from</arg>
+<arg>${index}</arg>
+<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.823464" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${index}</var>
+<arg>${index}+3</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.823464" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${ping-time3}</var>
+<arg>${ipString}[${index}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.823464" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<var>${ping-time3}</var>
+<arg>${ping-time3}</arg>
+<arg>time=</arg>
+<arg>ms</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.825338" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${ping-time3}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.825338" elapsed="0.000000"/>
+</kw>
+<kw name="Append To File" owner="OperatingSystem">
+<arg>${path}info.txt</arg>
+<arg>ping-time: ${ping-time3}\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.825871" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${ping-time3}&lt;50</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.825871" elapsed="0.000000"/>
+</kw>
+<kw name="Get Index From List" owner="Collections">
+<var>${index}</var>
+<arg>${ipString}</arg>
+<arg>from</arg>
+<arg>${index}</arg>
+<doc>Returns the index of the first occurrence of the ``value`` on the list.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.825871" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${index}</var>
+<arg>${index}+3</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.825871" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${ping-time4}</var>
+<arg>${ipString}[${index}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.826896" elapsed="0.000000"/>
+</kw>
+<kw name="Remove String" owner="String">
+<var>${ping-time4}</var>
+<arg>${ping-time4}</arg>
+<arg>time=</arg>
+<arg>ms</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.826896" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${ping-time4}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.826896" elapsed="0.000000"/>
+</kw>
+<kw name="Append To File" owner="OperatingSystem">
+<arg>${path}info.txt</arg>
+<arg>ping-time: ${ping-time4}\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.826896" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${ping-time4}&lt;50</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.828186" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${ping-average-time}</var>
+<arg>(${ping-time1}+${ping-time2}+${ping-time3}+${ping-time4})/4</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.828186" elapsed="0.000712"/>
+</kw>
+<kw name="Append To File" owner="OperatingSystem">
+<arg>${path}info.txt</arg>
+<arg>Average-ping-time: ${ping-average-time}\n\n</arg>
+<doc>Appends the given content to the specified file.</doc>
+<status status="NOT RUN" start="2024-09-23T11:23:45.829251" elapsed="0.000000"/>
+</kw>
+<var name="${index}">0</var>
+<status status="FAIL" start="2024-09-23T11:23:26.771345" elapsed="19.057906">Evaluating expression '[192.0.66.168]&lt;50' failed: SyntaxError: invalid syntax. Perhaps you forgot a comma? (&lt;string&gt;, line 1)</status>
+</iter>
+<var>${index}</var>
+<value>${length}</value>
+<status status="FAIL" start="2024-09-23T11:23:26.771345" elapsed="19.057906">Evaluating expression '[192.0.66.168]&lt;50' failed: SyntaxError: invalid syntax. Perhaps you forgot a comma? (&lt;string&gt;, line 1)</status>
+</for>
+<status status="FAIL" start="2024-09-23T11:23:26.712629" elapsed="19.116622">Evaluating expression '[192.0.66.168]&lt;50' failed: SyntaxError: invalid syntax. Perhaps you forgot a comma? (&lt;string&gt;, line 1)</status>
+</test>
+<status status="FAIL" start="2024-09-23T11:23:26.653550" elapsed="19.179261"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Assignment4">Assignment4</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
